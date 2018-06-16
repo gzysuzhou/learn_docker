@@ -23,3 +23,12 @@ Name, shorthand	Default	Description
 
 eg:
 docker commit -m 'install vim wget touch mytxt' -a 'Docker hello' 430e0c4bc055 my/centos
+
+5.查看container 
+docker container ls -a
+
+6.建议以Dockerfile 的方式生成image
+FROM base image
+RUN yum install -y vim
+
+docker build -t newname .(当前目录下的Dockerfile）
