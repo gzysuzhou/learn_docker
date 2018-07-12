@@ -1,0 +1,15 @@
+1.安装完成 vagrant和 virtual box后 进入cmd命令行
+
+2.进入E盘 创建目录 mkdir vagrant
+
+3. cd vagrant  mkdir centos7
+
+4. cd centos7 
+
+5. vagrant init centos/7
+
+6. vagrant up （如果报powershell 版本太低 百度搜索安装powershell 3） 时间较长 以为第一次要下载
+
+7.桌面图标打开 VirtualBox 就可以看到centos7的 一台linux虚拟主机
+
+8.命令行 vagrant ssh 就可以进入到这台虚拟机
