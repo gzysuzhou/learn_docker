@@ -8,6 +8,12 @@
 
 5. vagrant init centos/7
 
+4.5步骤 如果已下载相关.box镜像文件 则运行命令：
+  vagrant box add centos7 centos7box绝对路径
+  vagrant init 
+  修改生成的Vagrantfile文件config.vm.box = "centos7"
+  再运行 vagrant up
+
 6. vagrant up （如果报powershell 版本太低 百度搜索安装powershell 3） 时间较长 以为第一次要下载
 
 7.桌面图标打开 VirtualBox 就可以看到centos7的 一台linux虚拟主机
