@@ -20,6 +20,10 @@
 
 8.命令行 vagrant ssh 就可以进入到这台虚拟机
 
+9.exit; 退出登录
+
+10.vagrant halt 关机
+
 附：
 box list 镜像：
 http://www.vagrantbox.es/
