@@ -17,3 +17,15 @@
 附：
 box list 镜像：
 http://www.vagrantbox.es/
+
+
+使用xshell创建一个会话，进入创建的虚拟机，该虚拟机的账号密码如下：
+
+主机 127.0.0.1 端口 2222
+用户名：vagrant 
+密   码：vagrant 
+root帐号密码：vagrant
+
+//更新 
+用vagrant创建的ubuntu系统，root账号密码默认是没有设置的，需要手动设置 
+sudo passwd 
