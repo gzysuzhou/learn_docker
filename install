@@ -1,3 +1,36 @@
+安装命令：
+
+1.
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+2.
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+3.
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+4.
+sudo yum install docker-ce
+5.
+sudo systemctl start docker
+6.
+docker version 查看到版本信息说明安装成功
+7. hello world
+sudo docker run hello-world
+
+
 docker启动WARNING后报错解决办法
 
 解决办法：

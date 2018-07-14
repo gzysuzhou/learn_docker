@@ -32,3 +32,9 @@ FROM base image
 RUN yum install -y vim
 
 docker build -t newname .(当前目录下的Dockerfile）
+
+
+image 和 container的关系 类似于类与对象
+
+docker image仓库：
+https://hub.docker.com/
