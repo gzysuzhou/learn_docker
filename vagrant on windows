@@ -24,6 +24,24 @@
 
 10.vagrant halt 关机
 
+11.配置共享项目（默认为Vagrantfile所在目录<-> /vagrant ）
+config.vm.synced_folder "E:/vagrant/share" ,"/home/work/www",:nfs => true
+12.网络配置
+config.vm.network "private_network",ip:"192.168.199.102",auto_config:true
+
+config.vm.network "forwarded_port", guest: 80, host: 8888 
+config.vm.network "forwarded_port", guest: 8888, host: 8889
+
+13.打包共享镜像
+vagrant package --output xxx.box
+
+14.添加镜像
+vagrant box add xxx.box
+mkdir newbox
+cd newbox
+vagrant init xxx.box
+vagrant up 
+
 附：
 box list 镜像：
 http://www.vagrantbox.es/
@@ -39,3 +57,31 @@ root帐号密码：vagrant
 //更新 
 用vagrant创建的ubuntu系统，root账号密码默认是没有设置的，需要手动设置 
 sudo passwd 
+
+磁盘扩容
+      cmd 进入到 virturalbox 安装目录
+      然后查看需要修改的虚拟硬盘：
+        .\VBoxManage.exe list hdds
+        
+		VBoxManage.exe: error: Resize hard disk operation for this format is not implemented yet!
+		VirtualBox虚拟磁盘空间不够了，默认10G。想扩大，图形界面下没有找到可操作菜单。Google了一下用 Vbox自带的命令工具VBoxManage即可解决。
+
+		C:\Program Files\Oracle\VirtualBox>VBoxManage modifyhd e:\vbox\Ubuntu12.04\Ubuntu1204-201302-disk1.vmdk --resize 30000
+		0%...
+		Progress state: VBOX_E_NOT_SUPPORTED
+		VBoxManage.exe: error: Resize hard disk operation for this format is not implemented yet!
+
+		原来虚拟机用的是vmdk格式，这个命令只能支持vdi格式。怎么办
+
+		发现可以利用VBoxManager来转化虚拟硬盘存储文件格式
+		C:\Program Files\Oracle\VirtualBox>VBoxManage clonehd e:\vbox\Ubuntu12.04\Ubuntu1204-201302-disk1.vmdk  e:\vbox\Ubuntu12.04\Ubuntu1204-201310-disk1.vdi --format VDI
+		0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+		Clone hard disk created in format 'VDI'. UUID: 455b7aa4-d776-4254-8353-d9b5b3fa1
+		09b
+
+		最后用VBoxManager对转好的vdi文件进行扩容设置
+		C:\Program Files\Oracle\VirtualBox>VBoxManage modifyhd e:\vbox\Ubuntu12.04\Ubunt
+		u1204-201310-disk1.vdi --resize 30000
+		0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+
+		没有再报那个错误了。
