@@ -1,0 +1,15 @@
+首先进入阿里云docker库首页 
+https://dev.aliyun.com/
+点击 管理中心->点击 镜像加速器 可以看到专属的加速地址 替换下面的<your accelerate address> （不要尖括号）
+
+CentOS 7
+CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来
+/lib/systemd/system/docker.service -> /etc/systemd/system/docker.service
+然后再将加速器地址添加到配置文件的启动命令
+重启Docker就可以了。
+
+sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+sudo sed -i "s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon --registry-mirror=<your accelerate address>|g" /etc/systemd/system/docker.service
+sudo sed -i "s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd --registry-mirror=<your accelerate address>|g" /etc/systemd/system/docker.service
+sudo systemctl daemon-reload
+sudo service docker restart
