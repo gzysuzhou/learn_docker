@@ -1,0 +1,37 @@
+数据持久化：Data volume
+
+1.启动一个mysql容器：
+docker run -d --name mysql1 -e MYSQL_ROOT_PASSWORD=root -v mysql:/var/lib/mysql  mysql:5.7
+
+-d 后台运行
+
+--name 容器名字
+
+-e 环境参数
+
+-v 数据持久化路径映射
+
+最后是镜像名称:版本号
+
+查看volume:
+
+docker volume ls
+
+
+查看正在运行的容器
+
+docker ps -a
+
+查看具体某一个volume实际挂载信息：
+
+docker volume inspect  + volume的名字
+
+停止、删除容器后volume不会删除：
+
+docker stop + 容器id
+
+docker  rm + 容器id
+
+再次查看 docker volume ls 
+
+
